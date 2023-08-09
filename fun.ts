@@ -36,7 +36,7 @@
             )),
         )).pipe(
           switchMap(() => this.journalEntryGroupsService.commit(group).pipe(
-            map(() => new fromActions.SaveManualJournalEntryWithLinesSuccess(group)),
+            map((resp) => new fromActions.SaveManualJournalEntryWithLinesSuccess(resp)),
             catchError(error => of(new fromActions.SaveManualJournalEntryWithLinesFail(error))),
           )),
         ),
