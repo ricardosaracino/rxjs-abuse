@@ -1,7 +1,7 @@
 createEffect(() => this.actions$.pipe(
     ofType(fromActions.SAVE_MANUAL_JOURNAL_ENTRY_WITH_LINES),
     map((action: fromActions.SaveManualJournalEntryWithLines) => action.payload),
-    switchMap((req) => (
+    switchMap((req) => ( 
       (req.group.id ? this.journalEntryGroupsService.update(req.group) : this.journalEntryGroupsService.create(req.group)).pipe(
         // race condition on adjusted
         switchMap(group => (req.origLines.filter(d => d.id > 0).length === 0 ? of(group) :
